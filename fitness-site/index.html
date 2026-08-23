@@ -330,7 +330,8 @@ const INFO_SECTIONS=[
 
 /* ================= 渲染 ================= */
 let curWeek=parseInt(localStorage.getItem("fit_week")||"4");
-let curDay=((new Date().getDay()+6)%7);
+let curDay=parseInt(localStorage.getItem("fit_next_day")||"0");
+   if(curDay<0||curDay>6)curDay=0;
 if(curWeek<4||curWeek>16)curWeek=4;
 function doneKey(d,i){return `fit_w${curWeek}_d${d}_i${i}`}
 function getDone(k){return localStorage.getItem(k)==="1"}
@@ -400,7 +401,39 @@ function markAllToday(){
     list.forEach((_,i)=>setDone(doneKey(curDay,i),"1"));
     renderDay();
   }
-  function toggleBody(i){document.getElementById("ex"+i).querySelector(".ex-body").classList.toggle("open")}
+   function isDayCompleted(d){
+     if(DAYS[d].rest)return true;
+     const list=DAYS[d].getList().filter(x=>!x.sec);
+     return list.every((_,i)=>getDone(doneKey(d,i)));
+   }
+   // On load: if current day already completed (all items done), advance to next uncompleted training day
+   // This handles: user trained Wed, Thu was rest, Fri opens -> auto-jump to next uncompleted training day
+   // Also handles: week transition - if all days in current week completed, move to next week's first training day
+   (function(){
+     let guard=0;
+     while(guard<14){
+       if(!isDayCompleted(curDay))break; // not yet done, stay here
+       // current day is fully completed -> find next uncompleted non-rest day
+       let nd=curDay,found=false;
+       for(let k=0;k<7;k++){
+         nd=(nd+1)%7;
+         if(DAYS[nd].rest)continue;
+         if(!isDayCompleted(nd)){curDay=nd;localStorage.setItem("fit_next_day",nd);found=true;break;}
+       }
+       if(!found){
+         // all days in this week completed -> advance to next week, reset curDay to 0
+         const nw=curWeek+1;
+         if(nw>16){break;} // past max week
+         curWeek=nw;
+         localStorage.setItem("fit_week",nw);
+         curDay=0;
+         localStorage.setItem("fit_next_day",0);
+         break;
+       }
+       guard++;
+     }
+   })();
+   function toggleBody(i){document.getElementById("ex"+i).querySelector(".ex-body").classList.toggle("open")}
 function markDone(i){setDone(doneKey(curDay,i),!getDone(doneKey(curDay,i)));renderDay()}
 function setDay(i){curDay=i;renderDay()}
 function setWeek(w){curWeek=w;localStorage.setItem("fit_week",w);renderWeekBar();renderDay()}
