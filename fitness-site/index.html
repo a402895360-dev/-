@@ -465,7 +465,9 @@ function markDone(i){
      if(!getDateStr(curDay)&&getDone(doneKey(curDay,i)))setDateStr(curDay,todayStr());
      // If all items just got unchecked, clear the date
      if(wasCompleted&&!isDayCompleted(curDay))setDateStr(curDay,null);
+     const sy=window.scrollY;
      renderDay();
+     window.scrollTo(0,sy);
    }
 function setDay(i){curDay=i;renderDay()}
 function setWeek(w){curWeek=w;localStorage.setItem("fit_week",w);renderWeekBar();renderDay()}
