@@ -60,6 +60,12 @@
   .mark-all-btn{display:block;margin:0 auto 14px;padding:10px 24px;background:var(--green);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:bold;cursor:pointer;transition:.15s}
   .mark-all-btn:hover{opacity:.85}
   .mark-all-btn:active{transform:scale(.97)}
+  
+  .date-row{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 14px;font-size:13.5px;color:var(--muted)}
+  .date-row input[type=date]{background:var(--card);border:1px solid #2c3750;border-radius:8px;color:var(--text);padding:5px 10px;font-size:13px;outline:none}
+  .date-row input[type=date]:focus{border-color:var(--accent)}
+  .date-row .clear-btn{background:none;border:1px solid #2c3750;border-radius:8px;color:var(--muted);padding:5px 12px;cursor:pointer;font-size:12.5px}
+  .date-row .clear-btn:hover{border-color:var(--orange);color:var(--orange)}
   </style>
 </head>
 <body>
@@ -334,7 +340,16 @@ let curDay=parseInt(localStorage.getItem("fit_next_day")||"0");
    if(curDay<0||curDay>6)curDay=0;
 if(curWeek<4||curWeek>16)curWeek=4;
 function doneKey(d,i){return `fit_w${curWeek}_d${d}_i${i}`}
-function getDone(k){return localStorage.getItem(k)==="1"}
+function dateKey(d){return `fit_date_w${curWeek}_d${d}`}
+   function getDateStr(d){return localStorage.getItem(dateKey(d))||""}
+   function setDateStr(d,s){
+     if(s)localStorage.setItem(dateKey(d),s);
+     else localStorage.removeItem(dateKey(d));
+   }
+   function todayStr(){
+     const n=new Date();
+     return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
+   }
 function setDone(k,v){v?localStorage.setItem(k,"1"):localStorage.removeItem(k)}
 function resolveEx(ex){
   const ph=phaseInfo(curWeek).mode;
@@ -367,7 +382,13 @@ function renderDay(){
   const day=DAYS[curDay],ph=phaseInfo(curWeek);
   document.getElementById("dayBar").innerHTML=DAYS.map((d,i)=>
     `<button class="day-btn ${i===curDay?'active':''} ${d.rest?'rest-day':''}" onclick="setDay(${i})">${d.label}${d.rest?' 🛌':''}</button>`).join("");
-  let html=`<div class="day-title"><h2>${day.label} · ${day.name}</h2><span>${day.focus}</span><span class="phase-tag">${ph.tag}</span><div style="color:var(--muted);font-size:12.5px;margin-top:8px">${ph.desc}</div></div>`;
+  const savedDate=getDateStr(curDay);
+   let html=`<div class="day-title"><h2>${day.label} · ${day.name}</h2><span>${day.focus}</span><span class="phase-tag">${ph.tag}</span><div style="color:var(--muted);font-size:12.5px;margin-top:8px">${ph.desc}</div></div>
+   ${!day.rest?`<div class="date-row">
+     <span>📅 训练日期：</span>
+     <input type="date" id="trainDate" value="${savedDate}" onchange="setDateStr(curDay,this.value)">
+     <button class="clear-btn" onclick="clearTrainDate()">清空</button>
+   </div>`:``}`;
   let idx=0;
   for(const raw of day.getList()){
     if(raw.sec){html+=`<div class="section-label">— ${raw.sec} —</div>`;continue;}
@@ -394,11 +415,13 @@ function renderDay(){
   }
   document.getElementById("main").innerHTML=html;
 }
-function markAllToday(){
+function clearTrainDate(){setDateStr(curDay,null);renderDay();}
+   function markAllToday(){
     const day=DAYS[curDay];
     if(day.rest){alert("今天是休息日，不需要打卡");return;}
     const list=day.getList().filter(x=>!x.sec);
     list.forEach((_,i)=>setDone(doneKey(curDay,i),"1"));
+    if(!getDateStr(curDay))setDateStr(curDay,todayStr());
     renderDay();
   }
    function isDayCompleted(d){
@@ -434,7 +457,15 @@ function markAllToday(){
      }
    })();
    function toggleBody(i){document.getElementById("ex"+i).querySelector(".ex-body").classList.toggle("open")}
-function markDone(i){setDone(doneKey(curDay,i),!getDone(doneKey(curDay,i)));renderDay()}
+function markDone(i){
+     const wasCompleted=isDayCompleted(curDay);
+     setDone(doneKey(curDay,i),!getDone(doneKey(curDay,i)));
+     // If this is the first check (no date yet) and we just checked something, record today's date
+     if(!getDateStr(curDay)&&getDone(doneKey(curDay,i)))setDateStr(curDay,todayStr());
+     // If all items just got unchecked, clear the date
+     if(wasCompleted&&!isDayCompleted(curDay))setDateStr(curDay,null);
+     renderDay();
+   }setDone(doneKey(curDay,i),!getDone(doneKey(curDay,i)));renderDay()}
 function setDay(i){curDay=i;renderDay()}
 function setWeek(w){curWeek=w;localStorage.setItem("fit_week",w);renderWeekBar();renderDay()}
 
