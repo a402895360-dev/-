@@ -350,6 +350,7 @@ function dateKey(d){return `fit_date_w${curWeek}_d${d}`}
      const n=new Date();
      return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
    }
+function getDone(k){return localStorage.getItem(k)==="1"}
 function setDone(k,v){v?localStorage.setItem(k,"1"):localStorage.removeItem(k)}
 function resolveEx(ex){
   const ph=phaseInfo(curWeek).mode;
