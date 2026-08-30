@@ -24,11 +24,13 @@
   .pullup-bar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:9px 8px;background:var(--card);border:1px solid #232e47;border-radius:12px;margin-bottom:10px}
   .pullup-btn{border:1px solid #2c3750;background:var(--card2);color:var(--muted);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:12px;transition:.15s}
   .pullup-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:bold}
-  .up-summary{margin-top:5px;font-size:12px;color:#e8c98a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .up-box{background:#141d2c;border:1px dashed #33466b;border-radius:10px;padding:12px 14px;margin-top:12px}
-  .up-title{font-size:14px;font-weight:bold;color:#e8c98a;margin-bottom:6px}
+  .up-summary{margin-top:5px;font-size:11.5px;line-height:1.5;color:#e8c98a;word-break:break-word;overflow-wrap:break-word}
+  .up-box{background:#141d2c;border:1px dashed #33466b;border-radius:10px;padding:11px 13px;margin-top:12px;word-break:break-word;overflow-wrap:break-word}
+  .up-title{font-size:13.5px;font-weight:bold;color:#e8c98a;margin-bottom:5px}
   .up-phase{font-size:11px;color:var(--muted);font-weight:normal}
-  .up-note{font-size:12.5px;color:#c3cde0;line-height:1.7;margin-top:7px}
+  .up-note{font-size:12px;color:#c3cde0;line-height:1.65;margin-top:6px}
+  .up-box .step{font-size:13px}
+  .up-box .ex-meta{font-size:11.5px}
   .info-wrap{max-width:720px;margin:6px auto;padding:0 14px}
   details.info{background:#161d2e;border:1px solid #263252;border-radius:12px;margin-bottom:8px;overflow:hidden}
   details.info summary{cursor:pointer;padding:12px 15px;font-size:14px;font-weight:bold;color:#9db6e8;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
@@ -54,7 +56,7 @@
   .badge{display:inline-block;background:#28355a;color:#93ade0;font-size:11px;padding:2px 7px;border-radius:5px;margin-right:4px;margin-top:4px}
   .badge.db{background:#4a3a20;color:#e8c98a}
   .ex-body{max-height:0;overflow:hidden;transition:max-height .25s ease}
-  .ex-body.open{max-height:900px}
+  .ex-body.open{max-height:5000px}
   .steps{padding:0 16px 16px;border-top:1px solid #24304d;padding-top:14px}
   .target-muscle{font-size:13px;color:var(--accent);margin-bottom:8px}
   .step{display:flex;gap:10px;margin-bottom:9px;line-height:1.65;font-size:14px;color:#d3dae8}
@@ -453,8 +455,8 @@ function renderPullupGuide(){
 }
 function renderUpSummary(up){
   if(!up)return "";
-  if(up.text)return `<div class="up-summary">🔁 升级：${up.text.length>44?up.text.slice(0,44)+"…":up.text}</div>`;
-  return `<div class="up-summary">🔁 升级后：${up.name}（${up.phase||""}）｜⚖️ ${up.first||""}</div>`;
+  if(up.text)return `<div class="up-summary">🔁 升级：${up.text}</div>`;
+  return `<div class="up-summary">🔁 升级后：${up.name}（${up.phase||""}）</div>`;
 }
 function renderUpBlock(up){
   if(!up)return "";
