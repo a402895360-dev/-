@@ -21,6 +21,14 @@
   .day-btn{border:1px solid #2c3750;background:var(--card);color:var(--muted);padding:8px 15px;border-radius:999px;cursor:pointer;font-size:13.5px;transition:.15s}
   .day-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:bold}
   .day-btn.rest-day{opacity:.75}
+  .pullup-bar{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:9px 8px;background:var(--card);border:1px solid #232e47;border-radius:12px;margin-bottom:10px}
+  .pullup-btn{border:1px solid #2c3750;background:var(--card2);color:var(--muted);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:12px;transition:.15s}
+  .pullup-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:bold}
+  .up-summary{margin-top:5px;font-size:12px;color:#e8c98a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .up-box{background:#141d2c;border:1px dashed #33466b;border-radius:10px;padding:12px 14px;margin-top:12px}
+  .up-title{font-size:14px;font-weight:bold;color:#e8c98a;margin-bottom:6px}
+  .up-phase{font-size:11px;color:var(--muted);font-weight:normal}
+  .up-note{font-size:12.5px;color:#c3cde0;line-height:1.7;margin-top:7px}
   .info-wrap{max-width:720px;margin:6px auto;padding:0 14px}
   details.info{background:#161d2e;border:1px solid #263252;border-radius:12px;margin-bottom:8px;overflow:hidden}
   details.info summary{cursor:pointer;padding:12px 15px;font-size:14px;font-weight:bold;color:#9db6e8;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
@@ -144,29 +152,53 @@ function pushList(){return[
    sets:"3 组 × 8~12 次｜休 60~75 秒",part:["胸大肌","肩前束","三头"],
    steps:["双手与肩同宽撑地，全身一条直线","吸气慢下放至胸口接近地面","呼气推起，肘与身体约45°，核心收紧不塌腰"],
    tip:"升级路径：跪姿轻松4×15 → 第1组标准做到做不动跪姿补满 → 逐渐全标准。",
-   alt:{name:"哑铃卧推",sets:"3 组 × 8~12 次｜休 60 秒",steps:["仰卧凳上（或地上），双手各持哑铃于胸口两侧","呼气向上推起至手臂接近伸直","吸气慢放还原，手腕保持中立"]}},
+   up:{name:"哑铃卧推",phase:"第13周起；标准3×12标准且RIR1~2可提前。换前自重进阶：跪姿→标准→标准3×12轻松后抬脚/慢离心3秒",
+     sets:"3 组 × 8~12 次｜休 60 秒",part:["胸大肌","三头"],
+     steps:["仰卧凳上（或地上），双手各持哑铃于胸口两侧","呼气向上推起至手臂接近伸直","吸气慢放还原，手腕保持中立"],
+     first:"首次换哑铃：8kg/只（第一组连 8 次都难就降到 6kg/只）",
+     prog:"升级：3×12 + RIR1~2 → +2kg/只（8→10→12→14kg/只）"}},
  {name:"宽距俯卧撑",rf:"push",
    sets:"2 组 × 8~12 次｜休 60~75 秒",part:["胸外侧","肩前束"],
    steps:["双手间距宽于肩，身体直线","慢下放、呼气推起，侧重胸外侧"],
-   alt:{name:"哑铃上斜卧推",sets:"2 组 × 8~12 次｜休 60 秒",steps:["仰卧于上斜凳（30~45°）","哑铃于胸前两侧，向上推起","慢放还原"]}},
+   up:{name:"哑铃上斜卧推",phase:"第13周起",
+     sets:"2 组 × 8~12 次｜休 60 秒",part:["上胸","胸外侧"],
+     steps:["仰卧于上斜凳（30~45°）","哑铃于胸前两侧，向上推起","慢放还原"],
+     first:"首次换哑铃：6~8kg/只",
+     prog:"升级：2×12 + RIR1~2 → +2kg/只",
+     note:"家里没上斜凳就保留宽距俯卧撑（抬脚/负重进阶）。"}},
  {name:"弹力带站姿夹胸（5-15KG）",
    sets:"2 组 × 12~15 次｜休 45~60 秒",part:["胸中缝","肩前束"],
    steps:["弹力带固定背部肩高位置（门框后），双手分握两端","胸肌发力向前合拢","顶峰停顿1秒挤压胸中缝，慢速返回，不耸肩"],
-   tip:"小肌群不升阻值，靠次数到3×20+顶峰停顿2秒进阶。第13周起此动作继续保留弹力带完成。"},
+   tip:"小肌群不升阻值，靠次数到3×20+顶峰停顿2秒进阶。第13周起此动作继续保留弹力带完成。",
+   up:{text:"已确认可选：做哑铃卧推后可跳过。想做辅助：哑铃飞鸟 4~6kg/只，2 组 × 12~15｜休 45~60 秒｜胸中缝；2×15 + RIR1~2 → +1~2kg/只（6kg/只以内即可）。"}},
  {name:"冲肩俯卧撑（达标升级折刀）",rf:"push",
    sets:"第4~6周 1 组 × 8~12 次，第7周起 2 组｜休 45~60 秒",part:["肩前束","三头"],
    steps:["跪姿双手撑地，身体前倾重心压向肩部","肩前束发力推起，幅度小速度慢"],
    tip:"有肩部不适史，第4~6周只做1组，稳定后再逐步升级，不要急。",
-   alt:{name:"哑铃肩推",sets:"1~2 组 × 8~12 次｜休 45~60 秒",steps:["坐或站立，双手持哑铃于肩侧","垂直向上推起，顶峰稍停","慢放还原，核心收紧防塌腰"]}},
+   up:{name:"哑铃肩推",phase:"第13周起，可提前到第11~12周",
+     chain:"升级链：跪姿冲肩 → 标准冲肩 → 跪姿折刀 → 标准折刀 → 哑铃肩推（不要跳级）。换哑铃前提：标准折刀 2 组 × 12 次、动作标准、RIR1~2，连续达标；周数只是参考。",
+     sets:"1~2 组 × 8~12 次｜休 45~60 秒",part:["三角肌前束","中束"],
+     steps:["坐或站立，双手持哑铃于肩侧","垂直向上推起，顶峰稍停","慢放还原，核心收紧防塌腰、全程沉肩"],
+     first:"首次换哑铃：6kg/只（有肩部不适史宁轻勿重）",
+     prog:"升级：目标组数全 12 次 + RIR1~2 → +2kg/只（6→8→10→12→14kg/只）"}},
  {name:"弹力带侧平举（5-15KG）",rf:"sideRaise",
    sets:"3 组 × 12~15 次｜休 45~60 秒",part:["肩中束","肩袖"],
    steps:["双脚踩实带中段，双手握带垂于体侧","肘微屈两侧平举至肩高，慢放还原","刻意沉肩不耸肩，下放至手臂距身体约15°即可不完全放松"],
    tip:"小肌群线条动作，阻值固定5-15KG，靠次数和顶峰停顿进阶。",
-   alt:{name:"哑铃侧平举",sets:"3 组 × 12~15 次｜休 45~60 秒",steps:["双手各持轻哑铃垂于体侧","肘微屈两侧平举至肩高","慢放还原，刻意缩小幅度主动沉肩防斜方代偿"]}},
+   up:{name:"哑铃侧平举",phase:"第9周起（第一顺序）",
+     sets:"3 组 × 12~15 次｜休 45~60 秒",part:["三角肌中束"],
+     steps:["双手各持轻哑铃垂于体侧","肘微屈平举至肩高","慢放还原，幅度宁小勿大、主动沉肩防斜方代偿"],
+     first:"首次换哑铃：3.5~4kg/只",
+     prog:"升级：3×15 + RIR1~2 → +1kg/只（4→5→6→8kg/只，8kg 以内足够）",
+     note:"不需要升到 15-25KG 弹力带；弹力带阶段靠次数进阶（3×20 + 顶峰停顿 2 秒）。"}},
  {name:"弹力带过头臂屈伸（5-15KG）",rf:"push",
    sets:"2 组 × 10~15 次｜休 45~60 秒",part:["三头长头"],
    steps:["踩住带中段，双手握带举过头顶，大臂贴耳肘尖朝前","以肘为轴小臂向后下方屈伸，伸直时顶峰收紧0.5秒","大臂全程不动只动小臂"],
-   alt:{name:"哑铃过头臂屈伸",sets:"2 组 × 10~12 次｜休 45~60 秒",steps:["双手共握一只哑铃举过头顶","屈肘让哑铃落到脑后，大臂贴近头部不动","三头发力伸直手臂"]}},
+   up:{name:"哑铃过头臂屈伸",phase:"第13周起",
+     sets:"2 组 × 10~12 次｜休 45~60 秒",part:["肱三头肌"],
+     steps:["双手共握一只哑铃举过头顶","屈肘让哑铃落到脑后，大臂贴近头部不动","三头发力伸直手臂"],
+     first:"首次换哑铃：单只 8kg（双手共握一只）",
+     prog:"升级：2×12 + RIR1~2 → +2kg（单只总重，8→10→12→14kg）"}},
  {sec:"拉伸"},
  {name:"墙面胸大肌拉伸",sets:"左右各 40 秒",part:["胸大肌"],steps:["侧身站，一侧手臂水平贴墙掌心朝前","身体缓慢向远离墙面一侧旋转，直立不弯腰"]},
  {name:"肱三头拉伸",sets:"左右各 40 秒",part:["三头"],steps:["单手上举弯曲，另一手向下拉手肘，大臂贴耳"]},
@@ -180,28 +212,39 @@ function pullWarmup(){return[
   tip:"按顺序完整做一遍，与原热身视频内容一致。"},
  {name:"肩胛骨开合夹背",sets:"10 次（每天做）",part:["斜方肌下部","肩胛稳定"],steps:["自然站立沉肩","肩胛骨向内夹紧感受背部收紧","完全打开还原，反复 10 次"],tip:"每天必做。"},
  {name:"Dead Bug 死虫式",sets:"2 组 × 每侧 10 次｜休 15~20 秒",part:["核心启动","护腰"],steps:["仰卧，腰椎中立微贴地，双臂朝天、双腿屈膝抬90°","呼气核心收紧，对侧手脚同时缓慢伸展","吸气收回换对侧交替，全程慢而稳"],tip:"只做激活不计入训练量。"},
- {name:"超人式静态保持",sets:"保持 30 秒",part:["竖脊肌","背部","臀部"],steps:["俯卧在垫子上，双臂向前伸直，双腿也伸直","呼气时胸部、手臂和双腿同时微微抬离地面","感受背部（尤其下背部）收紧，保持 30 秒自然呼吸"],tip:"很好地激活整个后侧链，为划船和高位下拉做准备。"}
+ {name:"悬垂（引体专项热身）",sets:"1 组 × 20 秒｜不算训练组",part:["握力","肩胛稳定"],steps:["双手与肩同宽挂上单杠，手臂伸直","沉肩、不摆动，自然挂着 20 秒","不做到力竭，保留体力给引体专项"],tip:"引体专项热身，不算训练组。无哑铃升级：握力变强后可到 30 秒。"}
 ]}
 function pullMains(){return[
  {sec:"主力训练"},
+ {pullup:true},
  {name:"仰卧反向划船（双凳）",rf:"row",
    sets:"3 组 × 8~12 次｜休 60~75 秒",part:["背阔肌","菱形肌","二头"],
    steps:["两把等高稳固椅子平行摆放","双手抓椅边缘仰卧悬垂，身体一条直线","背部发力把胸口拉向凳面高度","顶峰收紧肩胛0.5秒，慢放还原不塌腰"],
    tip:"不便搭等高凳就直接改用弹力带坐姿划船 3×12（15-25KG），不要将就。",
-   alt:{name:"单臂哑铃划船",sets:"3 组 × 每侧 8~12 次｜休 60 秒",steps:["一手一膝支撑凳上，另一手持哑铃","背部发力沿体侧上拉，肘贴近身体","顶峰收紧肩胛0.5秒慢放，不转体"]}},
+   up:{name:"单臂哑铃划船",phase:"第11周起；弹力带坐姿划船连续2~3次轻松3×12且RIR>2可提前到第9~10周",
+     sets:"3 组 × 每侧 8~12 次｜休 60 秒",part:["背阔肌","菱形肌"],
+     steps:["一手一膝撑凳，另一手持哑铃沿体侧上拉","肘贴近身体，顶峰收紧肩胛0.5秒","慢放还原，不转体"],
+     first:"首次换哑铃：8kg/只（配重 7kg + 杆）",
+     prog:"升级：3 组全 12 次 + RIR1~2 → +2kg/只（8→10→12→14kg/只）"}},
  {name:"弹力带高位下拉（15-25KG）",
-   sets:"3 组 × 10~15 次｜休 60~75 秒",part:["背阔肌上部+外侧","菱形肌"],
+   sets:"2 组 × 10~15 次｜休 60~75 秒",part:["背阔肌上部+外侧","菱形肌"],
    steps:["带固定门框高处，双手宽握下拉至胸上部两侧","肘部向下向后夹紧","慢放还原保持张力"],
-   tip:"背阔是大肌群用15-25KG；此动作第13周起仍保留弹力带版本。"},
+   tip:"背阔是大肌群用15-25KG；此动作第13周起仍保留弹力带版本。",
+   up:{text:"不换哑铃（保留弹力带）。标准完成 3×15 且余力明显超 2 次后使命完成，无辅助引体 3×5 后按规则删除。"}},
  {name:"弹力带 Face Pull 面拉（5-15KG）",
    sets:"2 组 × 12~15 次｜休 45~60 秒",part:["三角肌后束","中下斜方","肩袖"],
    steps:["带固定与眼平齐高度","双手拉向面部两侧，肘部抬高超过肩","肩胛夹紧，慢放还原"],
-   tip:"改善圆肩。找不到发力感可换俯卧T字伸展或俯身反向飞鸟（2×12~15）。第13周起此动作继续保留弹力带。"},
+   tip:"改善圆肩。找不到发力感可换俯卧T字伸展或俯身反向飞鸟（2×12~15）。第13周起此动作继续保留弹力带。",
+   up:{text:"不换哑铃、不升阻值（不需要 15-25KG）。2×12~15 → 3×20 + 顶峰停顿 2 秒；之后直接换哑铃反向飞鸟 4~6kg/只起步。"}},
  {name:"弹力带弯举（5-15KG起）",rf:"curl",
    sets:"3 组 × 10~15 次｜休 45~60 秒",part:["肱二头肌","肱肌"],
    steps:["双脚踩实带中段，双手握带垂于大腿两侧","大臂全程贴紧身体","弯举顶峰收紧0.5秒，慢放还原"],
    tip:"5-15KG起体感轻了升15-25KG；15-25也轻松则该肌群达标可提前换哑铃。",
-   alt:{name:"哑铃弯举",sets:"3 组 × 10~15 次｜休 45~60 秒",steps:["双手各持哑铃垂于体侧掌心朝前","大臂固定贴身","弯举顶峰收紧0.5秒，慢放还原"]}}
+   up:{name:"哑铃弯举",phase:"第9周起，弹力带轻松可提前",
+     sets:"3 组 × 10~15 次｜休 45~60 秒",part:["肱二头肌","肱肌"],
+     steps:["双手各持哑铃垂于体侧，大臂固定贴身","弯举顶峰收紧0.5秒","慢放还原"],
+     first:"首次换哑铃：8kg/只（配重 7kg + 杆）",
+     prog:"升级：3 组全 15 次 + RIR1~2 → +1~2kg/只（8→10→12→14kg/只）"}}
 ]}
 function pullStretchTail(){return[
  {sec:"拉伸"},
@@ -219,11 +262,11 @@ function pullDay1(){return[
  {name:"正向摸墙",rf:"core",
    sets:"3 组 × 12~15 次｜休 30~45 秒",part:["上腹"],
    steps:["仰卧屈膝，双臂伸直指天","呼气上腹发力卷起肩胛、双手前伸像摸墙","腰部全程贴垫，下巴轻收不拉脖子"],
-   alt:{name:"抱重物卷腹",sets:"2~3 组 × 12~15 次｜休 30~45 秒",steps:["仰卧屈膝，双手抱重物于胸前或上方","呼气卷起肩胛，重物随身体移动","慢放还原，腰贴垫"]}},
+   up:{text:"升级：抱重物卷腹 2~3 组 × 12~15｜休 30~45 秒｜上腹；首次抱 2~4kg 重物；3×15 + RIR1~2 → +1~2kg。"}},
  {name:"胯下击掌",rf:"core",
    sets:"2 组 × 10~15 次｜休 30~45 秒",part:["下腹"],
    steps:["仰卧双腿伸直抬起离地","呼气骨盆后卷双腿微收，双手胯下击掌","吸气慢还原"],
-   alt:{name:"直腿反向卷腹",sets:"2 组 × 10~15 次｜休 30~45 秒",steps:["仰卧双手放体侧，双腿并拢伸直抬起","呼气臀部离地卷起，腿向上顶","吸气慢放但不完全落地"]}},
+   up:{text:"升级：直腿反向卷腹 2 组 × 10~15｜休 30~45 秒｜下腹；先放慢离心 3 秒爬次数到 2×15，再踝夹/腿夹 1~2kg 负重。"}},
  ...pullStretchTail()
 ]}
 function pullDay5(){return[
@@ -233,11 +276,11 @@ function pullDay5(){return[
  {name:"左右摸墙",rf:"core",
    sets:"3 组 × 12~15 次（左右交替）｜休 30~45 秒",part:["腹斜肌"],
    steps:["仰卧屈膝双臂指天","呼气上背卷起并向右转体手伸向右侧地面","左侧腹收缩还原换边匀速不甩动"],
-   alt:{name:"负重转体卷腹",sets:"2~3 组 × 12~15 次｜休 30~45 秒",steps:["双手抱重物于胸前","卷起同时向一侧转体","交替进行匀速控制"]}},
+   up:{text:"升级：负重转体卷腹 2~3 组 × 12~15｜休 30~45 秒｜腹斜肌；首次抱 2~4kg；达标 +1~2kg，控制速度不甩动。"}},
  {name:"侧平板支撑",rf:"core",
    sets:"左右各 2 组 × 30~40 秒｜休 30~45 秒",part:["腹内外斜肌","深层核心"],
    steps:["单侧手肘撑地身体一条直线","收紧侧腰不塌腰臀部不下坠","一侧做完换另一侧"],
-   alt:{name:"抬腿侧平板",sets:"左右各 2 组 × 30~40 秒｜休 30~45 秒",steps:["侧平板姿势基础上上侧腿缓慢抬起放下","增加抗侧屈难度","保持身体直线"]}},
+   up:{text:"升级：抬腿侧平板 左右各 2 组 × 30~40 秒｜休 30~45 秒｜腹斜肌；先练时间到 40 秒 × 2 组，再抬腿侧平板，之后加弹力带抗侧屈。"}},
  ...pullStretchTail()
 ]}
 function legsList(){return[
@@ -250,34 +293,46 @@ function legsList(){return[
  {name:"自重深蹲",rf:"squat",
    sets:"3 组 × 10~15 次｜休 60~75 秒",part:["股四头","臀大肌","核心"],
    steps:["双脚与肩同宽脚尖微外展","臀向后坐下蹲至大腿平行或略低","胸口挺起膝盖对准脚尖方向","站起收紧臀部自然站直"],
-   alt:{name:"高脚杯深蹲",sets:"3 组 × 10~15 次｜休 60 秒",steps:["双手捧一只哑铃于胸前（高脚杯姿势）","蹲至大腿平行或略低，胸口挺起","站起收臀，重心全程稳定"]}},
+   up:{name:"高脚杯深蹲",phase:"第15周起；自重3×15标准且RIR1~2可提前",
+     sets:"3 组 × 10~15 次｜休 60 秒",part:["股四头","臀大肌"],
+     steps:["双手捧一只哑铃于胸前","蹲至大腿平行或略低，胸口挺起","站起收臀，重心全程稳定"],
+     first:"首次换哑铃：10kg（单只，明显轻松直接 12kg）",
+     prog:"升级：3×15 + RIR1~2 → +2~2.5kg（10→12→14kg；更重用连接杆杠铃最多 30kg）"}},
  {name:"后撤箭步蹲",rf:"squat",
    sets:"3 组 × 每侧 8~12 次｜休 60~75 秒",part:["股四头","臀中肌","腘绳肌"],
    steps:["单脚向后跨步下蹲","前腿大腿平行地面后膝接近地面但不触地","前腿发力推起还原交替进行躯干直立"],
-   alt:{name:"哑铃箭步蹲",sets:"3 组 × 每侧 8~12 次｜休 60 秒",steps:["双手各持哑铃垂于体侧","向后跨步下蹲动作同徒手版","持铃保持平衡核心收紧"]}},
+   up:{name:"哑铃箭步蹲",phase:"第15周起",
+     sets:"3 组 × 每侧 8~12 次｜休 60 秒",part:["股四头","臀中肌"],
+     steps:["双手各持哑铃垂于体侧","向后跨步下蹲，动作同徒手版","持铃保持平衡，核心收紧"],
+     first:"首次换哑铃：6kg/只（单腿平衡优先宁轻勿重）",
+     prog:"升级：每侧 12 次 × 3 组稳定 + 膝盖轨迹正常 + RIR1~2 → +2kg/只（6→8→10→12→14kg/只）"}},
  {name:"站姿提踵",rf:"squat",
    sets:"4 组 × 15 次｜休 45~60 秒",part:["腓肠肌","比目鱼肌"],
    steps:["微屈膝缓慢踮起脚尖","顶峰收紧0.5秒，2秒慢放下放"],
    tip:"小腿有一定增长是正常的；当前量刺激温和不必担心过粗。",
-   alt:{name:"哑铃提踵",sets:"4 组 × 15 次｜休 45~60 秒",steps:["双手持哑铃垂于体侧","缓慢踮起脚尖顶峰停顿","2秒慢放下放"]}},
+   up:{name:"哑铃提踵",phase:"第15周起",
+     sets:"4 组 × 15 次｜休 45~60 秒",part:["小腿"],
+     steps:["双手持哑铃垂于体侧","缓慢踮起脚尖，顶峰停顿0.5秒","2秒慢放下放"],
+     first:"首次换哑铃：8~10kg/只",
+     prog:"升级：4×15 全达标 + RIR1~2 → +2kg/只（8→10→12→14kg/只）"}},
  {sec:"核心训练（周三全套 8 组）"},
  {name:"正向摸墙",rf:"core",
    sets:"2 组 × 12~15 次｜休 30~45 秒",part:["上腹"],
    steps:["动作同Pull日：仰卧屈膝双臂指天","卷起肩胛双手前伸，腰贴垫下巴轻收"],
-   alt:{name:"抱重物卷腹",sets:"2~3 组 × 12~15 次｜休 30~45 秒",steps:["双手抱重物于胸前","卷起肩胛慢放还原腰贴垫"]}},
+   up:{text:"升级：抱重物卷腹 2~3 组 × 12~15｜休 30~45 秒｜上腹；首次抱 2~4kg 重物；3×15 + RIR1~2 → +1~2kg。"}},
  {name:"胯下击掌",rf:"core",
    sets:"2 组 × 10~15 次｜休 30~45 秒",part:["下腹"],
    steps:["动作同Pull日：仰卧抬腿骨盆后卷胯下击掌"],
    tip:"下腹一周2次保留。",
-   alt:{name:"直腿反向卷腹",sets:"2 组 × 10~15 次｜休 30~45 秒",steps:["仰卧双腿伸直抬起","臀部离地卷起向上顶","慢放不完全落地"]}},
+   up:{text:"升级：直腿反向卷腹 2 组 × 10~15｜休 30~45 秒｜下腹；先放慢离心 3 秒爬次数到 2×15，再踝夹/腿夹 1~2kg 负重。"}},
  {name:"左右摸墙",rf:"core",
    sets:"2 组 × 12~15 次（左右交替）｜休 30~45 秒",part:["腹斜肌"],
    steps:["仰卧屈膝双臂指天","呼气上背卷起并向右转体手伸向右侧地面","左侧腹收缩还原换边匀速不甩动"],
-   alt:{name:"负重转体卷腹",sets:"2~3 组 × 12~15 次｜休 30~45 秒",steps:["双手抱重物于胸前","卷起同时向一侧转体","交替进行匀速控制"]}},
+   up:{text:"升级：负重转体卷腹 2~3 组 × 12~15｜休 30~45 秒｜腹斜肌；首次抱 2~4kg；达标 +1~2kg，控制速度不甩动。"}},
  {name:"侧平板支撑",rf:"core",
    sets:"左右各 2 组 × 30~40 秒｜休 30~45 秒",part:["腹内外斜肌","深层核心"],
    steps:["单侧手肘撑地身体一条直线","收紧侧腰不塌腰臀部不下坠","一侧做完换另一侧"],
-   alt:{name:"抬腿侧平板",sets:"左右各 2 组 × 30~40 秒｜休 30~45 秒",steps:["侧平板姿势基础上上侧腿缓慢抬起放下","增加抗侧屈难度","保持身体直线"]}},
+   up:{text:"升级：抬腿侧平板 左右各 2 组 × 30~40 秒｜休 30~45 秒｜腹斜肌；先练时间到 40 秒 × 2 组，再抬腿侧平板，之后加弹力带抗侧屈。"}},
  {sec:"拉伸"},
  {name:"大腿前侧拉伸",sets:"左右各 40 秒",part:["股四头"],steps:["单脚站立手抓同侧脚踝贴向臀部","双膝并拢腰背直立"]},
  {name:"大腿后侧拉伸",sets:"左右各 40 秒",part:["腘绳肌"],steps:["坐姿单腿伸直另一腿屈膝","上身平稳前俯碰脚尖腰背不弓"]},
@@ -294,15 +349,23 @@ function restList(){return[
 
 /* ================= 训练日定义 ================= */
 const DAYS=[
- {label:"训练日 1",name:"Pull 拉日",focus:"背 + 肩后束 + 二头 + 核心（上腹/下腹）｜力量 11 组 + 核心 5 组",getList:pullDay1},
+ {label:"训练日 1",name:"Pull 拉日",focus:"背 + 肩后束 + 二头 + 引体专项 + 核心（上腹/下腹）｜力量 10 组 + 核心 5 组",getList:pullDay1},
  {label:"训练日 2",name:"Push 推日",focus:"胸 + 肩 + 三头｜力量 13 组",getList:pushList},
  {label:"训练日 3",name:"Legs + 核心",focus:"下肢 + 核心｜约 10 组 + 核心 8 组",getList:legsList},
  {label:"训练日 4",name:"全天休息",focus:"完全恢复日",rest:true,getList:restList},
- {label:"训练日 5",name:"Pull 拉日",focus:"背 + 肩后束 + 二头 + 核心（侧腹）｜力量 11 组 + 核心 5 组",getList:pullDay5},
+ {label:"训练日 5",name:"Pull 拉日",focus:"背 + 肩后束 + 二头 + 引体专项 + 核心（侧腹）｜力量 10 组 + 核心 5 组",getList:pullDay5},
  {label:"训练日 6",name:"Push 推日",focus:"胸 + 肩 + 三头｜力量 13 组",getList:pushList},
  {label:"训练日 7",name:"全天休息",focus:"完全恢复日",rest:true,getList:restList}
 ];
 const INFO_SECTIONS=[
+ {t:"⚡ 动作升级准则 · 训练量监控",html:`
+  <b>升级判断（换哑铃与加重量同一准则）：</b>一次训练四条件全达标——所有组到次数上限 + 动作标准 + 最后一组仍留 1~2 次余力（RIR 1~2）+ 无明显借力。<br><br>
+  <b>升级时机：</b>达标后下一次训练（同一周的下次也算）直接试新重量；新重量能完成区间下限就留下，连下限都做不到或动作变形就退回原重量，下次再试。<br><br>
+  <b>换哑铃：</b>从建议起始重量开始（偏轻），不要拿弹力带标称重量对标；换动作/换档时同样从建议重量试起。加重后次数掉回 8~10 次属正常，重新爬。优先加重量，不加组数、不缩短休息。<br><br>
+  <b>换哑铃时间：</b>侧平举/弯举第 9 周、划船第 11 周、卧推/上斜/肩推/三头第 13 周、深蹲/箭步/提踵第 15 周、核心第 5~6 周可提前、夹胸可选（做哑铃卧推后可跳过）；达标均可提前。<br><br>
+  <b>训练量监控：</b>当前量（胸 14 组/周、肩 8~10、背 10+引体、核心 18 组徒手）在合理区间，暂不调整，也不要再加 Push 与核心组数。<br><br>
+  <b>减量触发（出现任一就减）：</b>主要动作连续 2 次次数/重量下降；晨起体重连续 1~2 周下降或睡眠变差/没精神；肩/肘持续不适。减量顺序：先砍高位下拉 → 再减反向划船 → 引体最后动。<br><br>
+  <b>加量方向：</b>4~8 周后恢复良好且表现持续上涨时，加量优先给 Legs；核心进入负重后减组数提质量（徒手 → 负重 → 增重）。`},
  {t:"〇 版本说明与恢复优先原则",html:`
   <b>循环：</b>训练日1 Pull → 日2 Push → 日3 Legs+核心 → 日4 休息 → 日5 Pull → 日6 Push → 日7 休息，固定不轮换。<br><br>
   <b>第4周 = 过渡周：</b>本周切换V2结构（胸/背/肩一周2次），组数不变，但每组次数执行<b>下限</b>（写8~12就做8），每组多留余力（剩2~3次力气停手），休息时间用上限。让身体先适应频率翻倍，第5周起恢复正常范围。<br><br>
@@ -317,7 +380,7 @@ const INFO_SECTIONS=[
   训练日3：正向摸墙2 + 胯下击掌2 + 左右摸墙2 + 侧平板左右各2 = 8组<br>
   训练日5（Pull）：左右摸墙3 + 侧平板左右各2 = 5组<br><br>
   合计约18组核心/周，目标腹部线条+鲨鱼线+腰部稳定，不是耐力比赛，此量维持不变。<br>
-  Dead Bug 在训练日 1/3/5 热身内固定做（只激活不计入训练量）；超人式静态保持在训练日 1/5 作预激活。`},
+  Dead Bug 在训练日 1/3/5 热身内固定做（只激活不计入训练量）；Pull 日另加悬垂 1 组 × 20 秒作引体专项热身。`},
  {t:"七 换哑铃时间表（汇总）",html:`
   <b>第4周</b> 过渡周：本版结构+次数按下限、留2~3次余力、休息用上限<br>
   <b>第5周</b> 适应期：正常次数范围留1~2次余力；核心可第5~6周起抱重物<br>
@@ -331,8 +394,82 @@ const INFO_SECTIONS=[
   · 侧平举、面拉、夹胸、三头 → <b>5-15KG</b>（小肌群必须轻）<br>
   · 高位下拉、坐姿划船 → <b>15-25KG</b>（背阔是大肌群）<br>
   · 弯举 → 5-15KG起，体感轻再升15-25KG<br><br>
-  20-25KG/30-50KG/45-60KG 不建议买——薄肌要轻阻力且第9周转哑铃，大阻值用不上反而易练厚。`}
+  20-25KG/30-50KG/45-60KG 不建议买：小肌群用大阻值容易耸肩代偿、伤肩；大肌群已有 15-25KG 加第 9 周起的哑铃路线，大阻值弹力带买来基本闲置。不是怕「练厚」——肌肉大小取决于刺激+总量+热量+时间。`}
 ];
+
+/* ================= 引体专项四档（最新 Pull 日方案 A） ================= */
+const PULLUP_TIERS=[
+ {key:"start",label:"起步档",sub:"两根带·正手",
+  full:"起步档｜两根弹力带（15-25KG 重带 + 5-15KG 轻带）· 正手（掌心朝前、与肩同宽）· 腋下背部辅助",
+  sets:"周一 3 组 × 3~6 次｜周五 3 组 × 3~6 次｜休 90~120 秒",
+  steps:["两根带从背后腋下穿过（不套手、不套脚），借力上拉","下巴过杆停顿 0.5 秒","慢放 2~3 秒"],
+  tip:"你当前档位：已能正手 3 组 × 3 次，从 3 次起步，质量稳了再往 4→5→6 次爬。"},
+ {key:"t1",label:"第一档",sub:"单根重带·正手",
+  full:"第一档｜15-25KG 重带（单根）· 正手 · 腋下背部辅助",
+  sets:"周一 3 组 × 3~6 次｜周五 3 组 × 3~6 次｜休 90~120 秒",
+  steps:["单根重带从背后腋下穿过，借力上拉","下巴过杆停顿 0.5 秒","慢放 2~3 秒"],
+  tip:"减掉一根带后次数掉到 3~5 次正常，从低次数重新起步。"},
+ {key:"t2",label:"第二档",sub:"单根轻带·正手",
+  full:"第二档｜5-15KG 轻带（单根）· 正手 · 腋下背部辅助",
+  sets:"周一 3 组 × 3~6 次｜周五 3 组 × 3~6 次｜休 90~120 秒",
+  steps:["单根轻带从背后腋下穿过，借力上拉","下巴过杆停顿 0.5 秒","慢放 2~3 秒"],
+  tip:"辅助越来越小，动作标准优先，宁可少做也不要借力摆动。"},
+ {key:"t3",label:"第三档",sub:"无辅助·正手",
+  full:"第三档｜无辅助正手（里程碑：第 1 个无辅助引体）",
+  sets:"先冲第 1 个完整引体；成功后周一 3 组 × 1~3 次｜周五 3 组 × 1~3 次｜休 90~120 秒",
+  steps:["先冲第 1 个完整无辅助引体（里程碑，不固定测试，偶尔试一次）","成功后按周一 3 组、周五 3 组执行正式引体","加弹力带补容量 2 组 × 5~8 次（15-25KG 或 5-15KG 视体感）"],
+  tip:"总次数在恢复良好的前提下逐步增加，不强制每周加固定数量。无辅助稳定 3 组 × 5 次后，高位下拉彻底删除。"}
+];
+const PULLUP_RULES=[
+ "换档条件（起步档~第三档通用）：3 组全部高质量、每组至少 6 次、全程无摆动、下巴稳定过杆、下降控制 2 秒左右、最后一组仍留 1~2 次余力；三组必须都达标，第三组靠蹬腿摆动完成的不算。换档后次数掉到 3~5 次正常。",
+ "弹力带推荐腋下背部辅助（带子从背后腋下穿过），不套手、不套脚；套膝盖仅作备选。",
+ "单杠安全：免打孔门框单杠承受的是体重加动态拉力，第一次上杆先悬垂测试稳定性，再轻微负重，再正式辅助引体；单杠不稳就先不练。",
+ "红线：全程沉肩不耸肩。降级信号只有肩关节疼痛、肘关节疼痛、前臂明显疲劳影响握杆、肩胛控制明显下降；普通肌肉酸痛照常练。",
+ "第一个无辅助引体是里程碑，不固定测试，辅助引体做扎实后偶尔试一次。",
+ "恢复出问题时减量顺序：先砍高位下拉 → 再减反向划船 3 到 2 组 → 引体最后动。",
+ "无辅助引体稳定 3 组 × 5 次后，高位下拉彻底删除，Pull 日变为：引体 → 超人式（可选）→ 反向划船 → 面拉 → 弯举。"
+];
+function getPullupTier(){return localStorage.getItem("fit_pullup_tier")||"start"}
+function setPullupTier(k){
+  if(!PULLUP_TIERS.some(t=>t.key===k))k="start";
+  localStorage.setItem("fit_pullup_tier",k);
+  const sy=window.scrollY;renderDay();window.scrollTo(0,sy);
+}
+function getPullupEx(){
+  const k=getPullupTier();
+  const t=PULLUP_TIERS.find(x=>x.key===k)||PULLUP_TIERS[0];
+  return {name:`引体专项｜${t.label}（${t.sub}）`,sets:t.sets,part:["背阔肌","大圆肌","肱二头肌","握力"],steps:t.steps,tip:t.tip};
+}
+function renderPullupGuide(){
+  const tier=getPullupTier();
+  return `<div style="margin:2px 0 12px">
+   <div style="font-size:12px;color:var(--muted);margin-bottom:6px">🎚️ 选择你的当前引体档位（下方卡片同步显示对应组数与做法，选择会自动记住）</div>
+   <div class="pullup-bar">${PULLUP_TIERS.map(t=>`<button class="pullup-btn ${t.key===tier?'active':''}" onclick="setPullupTier('${t.key}')">${t.label} ${t.sub}</button>`).join("")}</div>
+   <details class="info"><summary>📖 引体专项四档 · 换档条件 · 红线</summary><div class="info-body">
+   ${PULLUP_TIERS.map(t=>`<b>${t.full}</b><br>${t.sets}<br><br>`).join("")}
+   ${PULLUP_RULES.map(r=>`· ${r}<br>`).join("")}
+   </div></details>
+  </div>`;
+}
+function renderUpSummary(up){
+  if(!up)return "";
+  if(up.text)return `<div class="up-summary">🔁 升级：${up.text.length>44?up.text.slice(0,44)+"…":up.text}</div>`;
+  return `<div class="up-summary">🔁 升级后：${up.name}（${up.phase||""}）｜⚖️ ${up.first||""}</div>`;
+}
+function renderUpBlock(up){
+  if(!up)return "";
+  if(up.text)return `<div class="up-box"><div class="up-title">🔁 升级方式</div><div class="up-note">${up.text}</div></div>`;
+  return `<div class="up-box">
+    <div class="up-title">🔁 升级后：${up.name} <span class="up-phase">（${up.phase||""}）</span></div>
+    ${up.sets?`<div class="ex-meta" style="margin-top:2px">${up.sets}</div>`:""}
+    <div style="margin:5px 0 8px">${(up.part||[]).map(p=>`<span class="badge db">${p}</span>`).join("")}<span class="badge db">🏋️ 哑铃版</span></div>
+    ${up.steps?up.steps.map((s,j)=>`<div class="step"><b>第${j+1}步</b><span>${s}</span></div>`).join(""):""}
+    ${up.chain?`<div class="up-note">🔗 ${up.chain}</div>`:""}
+    ${up.first?`<div class="up-note">⚖️ ${up.first}</div>`:""}
+    ${up.prog?`<div class="up-note">📈 ${up.prog}</div>`:""}
+    ${up.note?`<div class="up-note">💡 ${up.note}</div>`:""}
+  </div>`;
+}
 
 /* ================= 渲染 ================= */
 let curWeek=parseInt(localStorage.getItem("fit_week")||"4");
@@ -352,11 +489,7 @@ function dateKey(d){return `fit_date_w${curWeek}_d${d}`}
    }
 function getDone(k){return localStorage.getItem(k)==="1"}
 function setDone(k,v){v?localStorage.setItem(k,"1"):localStorage.removeItem(k)}
-function resolveEx(ex){
-  const ph=phaseInfo(curWeek).mode;
-  if(ph==="db"&&ex.rf&&curWeek>=RF[ex.rf]&&ex.alt)return{...ex,...ex.alt,isAlt:true};
-  return ex;
-}
+function resolveEx(ex){return ex}
 function updateProgress(){
   let total=0,done=0;
   DAYS.forEach((day,d)=>{
@@ -393,7 +526,8 @@ function renderDay(){
   let idx=0;
   for(const raw of day.getList()){
     if(raw.sec){html+=`<div class="section-label">— ${raw.sec} —</div>`;continue;}
-    const ex=resolveEx(raw);
+    if(raw.pullup)html+=renderPullupGuide();
+    const ex=raw.pullup?getPullupEx():resolveEx(raw);
     const isDone=getDone(doneKey(curDay,idx));
     html+=`<section class="exercise ${isDone?'done':''}" id="ex${idx}">
       <div class="ex-head" onclick="toggleBody(${idx})">
@@ -401,7 +535,8 @@ function renderDay(){
         <div class="ex-info">
           <div class="ex-name">${ex.name}</div>
           ${ex.sets?`<div class="ex-meta">${ex.sets}</div>`:""}
-          <div>${(ex.part||[]).map(p=>`<span class="badge ${ex.isAlt?'db':''}">${p}</span>`).join("")}${ex.isAlt?'<span class="badge db">🏋️ 哑铃版</span>':''}</div>
+          <div>${(ex.part||[]).map(p=>`<span class="badge">${p}</span>`).join("")}</div>
+          ${renderUpSummary(ex.up)}
         </div>
       </div>`;
     if(ex.steps&&ex.steps.length){
@@ -410,6 +545,7 @@ function renderDay(){
         ${ex.steps.map((s,j)=>`<div class="step"><b>第${j+1}步</b><span>${s}</span></div>`).join("")}
         ${ex.tip?`<div class="tip">💡 ${ex.tip}</div>`:""}
         ${(()=>{const v=findVideo(ex.name);return v?`<video src="videos/${v}.mp4" controls muted playsinline style="width:100%;max-width:360px;border-radius:10px;margin-top:12px;display:block" preload="none"></video>`:""})()}
+        ${renderUpBlock(ex.up)}
       </div></div>`;
     }
     html+=`</section>`;idx++;
